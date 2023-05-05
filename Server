@@ -1,0 +1,50 @@
+import socket
+
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+ip_address = "127.0.0.1"
+port_number = 7000
+server_address = (ip_address, port_number)
+
+server_socket.bind(server_address)
+
+questions = [
+    {
+        "question": "What year was Delaware State University established?\nA) 1891\nB) 1981\nC) 2001\nD) 2021\n",
+        "correct_answer": "A"
+    },
+    {
+        "question": "Which college did Delaware State University acquire?\nA) University of Delaware\nB) Wesley\nC) Delaware Technical Community College\nD) Wilmington University\n",
+        "correct_answer": "B"
+    }
+]
+
+client_address = ("localhost", 1234)
+
+for question in questions:
+    while True:
+        data, address = server_socket.recvfrom(1024)
+        if data.decode() == "ready":
+            server_socket.sendto(question['question'].encode(), address)
+            while True:
+                answer = server_socket.recvfrom(1024)[0].decode().strip().lower()
+
+                if answer == "a" or answer == "b" or answer == "c" or answer == "d":
+                    if answer == question['correct_answer'].lower():
+                        success_message = "Answer is correct."
+                        server_socket.sendto(success_message.encode(), address)
+                        print("Answer is correct.")
+                        break
+                    else:
+                        error_message = "Sorry, that's the wrong answer. Please try again."
+                        server_socket.sendto(error_message.encode(), address)
+                        print("Answer is incorrect.")
+                else:
+                    error_message = "Invalid input. Please enter A, B, C, or D."
+                    server_socket.sendto(error_message.encode(), address)
+                    print("Invalid input.")
+
+confirmation_message = "Congratulations! You have correctly answered all questions"
+server_socket.sendto(confirmation_message.encode(), client_address)
+
+server_socket.close()
