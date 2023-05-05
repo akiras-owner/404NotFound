@@ -1,0 +1,5 @@
+This Computer Networking project, created by group: 404-not-found, is a Peer-to-Peer network protocol that allows students to engage in a Scavenger Hunt game. The student who begins the game will be prompted with a set of questions to maneuver through the scavenger hunt, and reach the end. This project was created using Python and Bottle, and utlizes UDP connections to effectively communicate with the server and any joining peers.  
+
+This uploaded project is a simulated version of the scavenger hunt- utilizing two files: Server and Client. The Server when run, prompts the user (student) with a trivial question about DSU (Delaware State University). Once the question is answered correctly, it signals the Server to move on to the next question. 
+- This is to prevent a user from just skipping through the scavenger hunt questions. 
+
