@@ -1,0 +1,24 @@
+ip_address = "127.0.0.1"
+port_number = 7000
+server_address = (ip_address, port_number)
+
+client_address = ("localhost", 1234)
+
+for i in range(2):  # number of questions in the quiz
+    client_socket.sendto("ready".encode(), server_address)
+    question = client_socket.recvfrom(1024)[0].decode()
+    print(question)  # print the question
+
+    while True:
+        answer = input("Enter your answer (A/B/C/D): ")
+        client_socket.sendto(answer.encode(), server_address)
+        response, _ = client_socket.recvfrom(1024)
+        print(response.decode())
+        if response.decode() == "Answer is correct.":
+            break
+
+# Receive and print the confirmation message from the server
+confirmation_message, _ = client_socket.recvfrom(1024)
+print(confirmation_message.decode())
+
+client_socket.close()
