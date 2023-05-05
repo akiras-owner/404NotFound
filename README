@@ -3,3 +3,19 @@ This Computer Networking project, created by group: 404-not-found, is a Peer-to-
 This uploaded project is a simulated version of the scavenger hunt- utilizing two files: Server and Client. The Server when run, prompts the user (student) with a trivial question about DSU (Delaware State University). Once the question is answered correctly, it signals the Client file to move on to the next question. 
 - This is to prevent a user from just skipping through the scavenger hunt questions. 
 
+
+
+TO RUN:
+
+- please use your IDE of choice (we utilized PyCharm) 
+- create two seperate files, one for the Server and one for the Client
+- once created, copy and paste the codes into the appropriate files, and create the correct configurations for both
+- go to "Run"/"Edit Configurations" and check "Emulate terminal in output console"
+- lastly: run Server file first (under the correct Server configuration), and then run the Client file (under the correct Client configuration), check the terminal for the question(s) to be generated and try out a few answers for yourself!
+
+
+Thank you,
+
+404-not-found
+
+
